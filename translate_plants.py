@@ -66,19 +66,15 @@ with open('data/Database_Temperate_Example.csv',mode='r') as read_obj, \
     csv_reader = csv.DictReader(read_obj)
     headers=['Latin name',
     'Family',
-    'Common name',
-    'Common name_fr'
+    'Common name','Common name_fr',
     'Habit',
     'Deciduous Evergreen',
     'Height',
     'Width',
     'UK Hardiness',
-    'Medicinal',
-    'Medicinal_fr',
-    'Range',
-    'Range_fr',
-    'Habitat',
-    'Habitat_fr',
+    'Medicinal','Medicinal_fr',
+    'Range','Range_fr',
+    'Habitat','Habitat_fr',
     'Soil',
     'Shade',
     'Moisture',
@@ -89,14 +85,32 @@ with open('data/Database_Temperate_Example.csv',mode='r') as read_obj, \
     'Alkaline',
     'Saline',
     'Wind',
-    'Growth rate','Pollution','Poor soil','Drought','Wildlife','Pollinators','Self fertile','Known hazards','Synonyms','Cultivation details','Edible uses','Uses notes','Propagation','Heavy clay','EdibilityRating','FrostTender','Scented','MedicinalRating','Author'
+    'Growth rate',
+    'Pollution',
+    'Poor soil',
+    'Drought',
+    'Wildlife',
+    'Pollinators','Pollinators_fr',
+    'Self fertile',
+    'Known hazards','Known hazards_fr',
+    'Synonyms','Synonyms_fr',
+    'Cultivation details','Cultivation details_fr',
+    'Edible uses','Edible uses_fr',
+    'Uses notes',
+    'Propagation',
+    'Heavy clay',
+    'EdibilityRating',
+    'FrostTender',
+    'Scented',
+    'MedicinalRating',
+    'Author'
 ]
     csv_writer = csv.DictWriter(write_obj,fieldnames=headers)
     csv_writer.writeheader() 
     for row in csv_reader:
         # print(row['Family'])
         CurrentPlantWiki = PlantWiki(row['Latin name'])
-        row['Common Name_fr']=CurrentPlantWiki.commun_name
+        row['Common name_fr']=CurrentPlantWiki.commun_name
         print(CurrentPlantWiki)
         # Medicinal
         row['Medicinal_fr']=Translate(row['Medicinal'])        
@@ -104,9 +118,18 @@ with open('data/Database_Temperate_Example.csv',mode='r') as read_obj, \
         row['Range_fr']=Translate(row['Range'])        
         # Habitat
         row['Habitat_fr']=Translate(row['Habitat']) 
-
-
-
+        # Pollinators
+        row['Pollinators_fr']=Translate(row['Pollinators']) 
+        # Known hazards
+        row['Known hazards_fr']=Translate(row['Known hazards']) 
+        # Cultivation details
+        row['Cultivation details_fr']=Translate(row['Cultivation details'])
+        # Edible uses
+        row['Edible uses_fr']=Translate(row['Edible uses'])  
+        # Range
+        row['Range_fr']=Translate(row['Range'])
+        # Synonyms
+        row["Synonyms_fr"]=CurrentPlantWiki.aliases
         csv_writer.writerow(row)
 
 # csv_en = pd.read_csv('data/Database_Temperate_Example.csv')
